@@ -1,7 +1,7 @@
-// src/pages/EditCar.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { cars } from '../services/api';
+import { cars, IF_URL } from '../services/api';
 
 const EditCar = () => {
   const { id } = useParams();
@@ -102,7 +102,7 @@ const EditCar = () => {
             {formData.images.map((image, index) => (
               <div key={index} className="relative">
                 <img
-                  src={image}
+                  src={`${IF_URL}${image}`}
                   alt={`Current ${index + 1}`}
                   className="w-full h-24 object-cover rounded"
                 />
