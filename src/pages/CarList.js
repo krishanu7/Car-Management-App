@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { cars } from '../services/api';
+import { cars, IF_URL } from '../services/api';
 
 const CarList = () => {
   const [carList, setCarList] = useState([]);
@@ -60,7 +60,7 @@ const CarList = () => {
             >
               <div className="aspect-w-16 aspect-h-9">
                 <img
-                  src={car.images[0]}
+                  src={`${IF_URL}${car.images[0]}`}
                   alt={car.title}
                   className="object-cover w-full h-48 rounded-t-lg"
                 />

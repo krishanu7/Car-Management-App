@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { cars } from '../services/api';
-
+import { cars, IF_URL } from '../services/api';
 const CarDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -13,10 +12,10 @@ const CarDetail = () => {
   useEffect(() => {
     fetchCar();
   }, [id]);
-
   const fetchCar = async () => {
     try {
       const { data } = await cars.get(id);
+      console.log(data);
       setCar(data);
     } catch (error) {
       setError(error.response?.data?.message || 'Error fetching car details');
@@ -63,7 +62,7 @@ const CarDetail = () => {
       <div className="mb-8">
         <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
           <img
-            src={car.images[currentImage]}
+            src={`${IF_URL}${car.images[currentImage]}`}
             alt={`${car.title} - Image ${currentImage + 1}`}
             className="w-full h-full object-cover"
           />
@@ -91,7 +90,7 @@ const CarDetail = () => {
               }`}
             >
               <img
-                src={image}
+                src={`${IF_URL}${image}`}
                 alt={`${car.title} - Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
               />
